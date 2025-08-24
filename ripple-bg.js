@@ -8,10 +8,9 @@
     .bg-canvas {
       position: fixed;
       inset: 0;
-      z-index: 0;
+      z-index: -1;      /* keep under all content */
       pointer-events: none; /* let the page receive interactions */
     }
-    /* Ensure normal content stays above */
     body { position: relative; }
   `;
   document.head.appendChild(style);
@@ -49,11 +48,11 @@
   const themeBtn = document.getElementById("theme-toggle");
   if (themeBtn) themeBtn.addEventListener("click", () => { setTimeout(() => { fadeFill = getFillForTheme(); }, 0); });
 
-  // Ripple parameters (tweak for look/perf)
+  // Ripple parameters
   const MAX_RIPPLES = 64;
   const SPEED_PX_PER_S = 240; // expansion speed
-  const LIFE_MS = 1400;       // how long a ripple lives
-  const RINGS = 3;            // how many visible rings per ripple
+  const LIFE_MS = 1400;       // ripple lifetime
+  const RINGS = 3;            // visible rings per ripple
   const RING_GAP = 12;        // px gap between rings
   const MIN_EMIT_INTERVAL = 35; // ms throttle for pointermove
 
@@ -68,7 +67,6 @@
   function clientToCanvas(e) {
     const r = canvas.getBoundingClientRect();
     return { x: e.clientX - r.left, y: e.clientY - r.top };
-    // Coordinates are in CSS pixels; we already scaled context to CSS pixels.
   }
 
   window.addEventListener("pointermove", (e) => {
@@ -81,7 +79,6 @@
 
   window.addEventListener("pointerdown", (e) => {
     const { x, y } = clientToCanvas(e);
-    // A slightly stronger burst on click/tap
     for (let i = 0; i < 2; i++) emit(x, y, 1);
   }, { passive: true });
 
@@ -95,7 +92,7 @@
   let last = performance.now();
   function tick(now) {
     if (!running) { requestAnimationFrame(tick); return; }
-    const dt = Math.min(33, now - last); // clamp delta for stability
+    const dt = Math.min(33, now - last);
     last = now;
 
     // Soft trail fade to create water effect
@@ -106,7 +103,7 @@
 
     // Draw ripples with a light-like blend
     ctx.save();
-    ctx.globalCompositeOperation = "screen"; // brightens where rings overlap
+    ctx.globalCompositeOperation = "screen";
     ctx.lineWidth = 1.5;
     ctx.strokeStyle = "#22d3ee";
     ctx.filter = "blur(0.3px)";
@@ -116,14 +113,13 @@
       const age = now - r.t0;
       if (age > LIFE_MS) { ripples.splice(i, 1); continue; }
 
-      const base = (age / 1000) * SPEED_PX_PER_S; // base radius
-      const fade = 1 - (age / LIFE_MS); // overall alpha falloff
+      const base = (age / 1000) * SPEED_PX_PER_S;
+      const fade = 1 - (age / LIFE_MS);
 
       for (let k = 0; k < RINGS; k++) {
         const radius = Math.max(0, base - k * RING_GAP);
         if (radius <= 0) continue;
 
-        // Subtle shimmering using a sine tied to radius and time
         const wave = 0.5 + 0.5 * Math.sin((radius / 12) - now * 0.02);
         const alpha = Math.max(0, fade * (0.25 + 0.75 * wave)) * (0.7 - k * 0.18) * r.force;
         if (alpha < 0.02) continue;

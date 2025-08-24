@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://abu-mujahid.github.io/sitemap.xml

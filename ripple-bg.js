@@ -49,9 +49,9 @@
   if (themeBtn) themeBtn.addEventListener("click", () => { setTimeout(() => { fadeFill = getFillForTheme(); }, 0); });
 
   // Ripple parameters
-  const MAX_RIPPLES = 64;
-  const SPEED_PX_PER_S = 240; // expansion speed
-  const LIFE_MS = 1400;       // ripple lifetime
+  const MAX_RIPPLES = 32;
+  const SPEED_PX_PER_S = 180; // expansion speed
+  const LIFE_MS = 1000;       // ripple lifetime
   const RINGS = 3;            // visible rings per ripple
   const RING_GAP = 12;        // px gap between rings
   const MIN_EMIT_INTERVAL = 35; // ms throttle for pointermove

@@ -16,7 +16,7 @@
   --shadow: 0 10px 30px rgba(0,0,0,.35);
   --maxw: 1120px;
 
-  /* New: responsive gutter (safe-area aware in container) */
+  /* Responsive gutter (safe-area aware) */
   --gutter: clamp(16px, 5vw, 24px);
 }
 
@@ -75,14 +75,33 @@ h3 { font-size: clamp(1.05rem, 3.5vw, 1.3rem); }
   background: var(--surface); color: var(--text); border-radius: 6px; outline: 2px solid var(--primary);
 }
 
-/* Header */
+/* Header (full-bleed, elevated, auto-hide support) */
 .site-header {
-  position: sticky; top: 0; z-index: 100;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  width: 100%;
   display: flex; align-items: center; justify-content: space-between; gap: 1rem;
   padding-block: .75rem;
-  background: color-mix(in oklab, var(--bg) 88%, black 12%); backdrop-filter: saturate(1.2) blur(8px);
+  /* Full-width glassy background */
+  background: color-mix(in oklab, var(--bg) 88%, black 12%);
+  backdrop-filter: saturate(1.2) blur(8px);
   border-bottom: 1px solid var(--border);
+  /* Shadow to look above content */
+  box-shadow: 0 8px 24px rgba(0,0,0,.35);
+  /* Slide away on scroll down */
+  transform: translateY(0);
+  transition: transform .28s ease-in-out, box-shadow .2s ease;
 }
+/* Let header stretch to the edges; keep safe gutters for content */
+.site-header.container {
+  max-width: none;
+  margin-inline: 0;
+  padding-left: calc(var(--gutter) + env(safe-area-inset-left));
+  padding-right: calc(var(--gutter) + env(safe-area-inset-right));
+}
+.site-header.hide { transform: translateY(-100%); }
+
 .brand { display: inline-flex; align-items: center; gap: .65rem; color: var(--text); font-weight: 700; letter-spacing: .3px; }
 .brand img { width: 30px; height: 30px; border-radius: 8px; box-shadow: var(--glow); }
 .brand-text { letter-spacing: .3px; }

@@ -1,0 +1,23 @@
+[
+  {
+    "title": "Arabic Romanizer",
+    "description": "AI‑powered Arabic → Roman transliteration tool.",
+    "image": "assets/logo-ravencorp-tech.png",
+    "tags": ["JavaScript", "AI API", "Web App"],
+    "comingSoon": true,
+    "links": {
+      "live": "",
+      "source": "https://github.com/Abu-Mujahid"
+    }
+  },
+  {
+    "title": "Portfolio Website",
+    "description": "This site — responsive, SEO‑friendly personal portfolio.",
+    "image": "assets/logo-ravencorp-tech.png",
+    "tags": ["HTML", "CSS", "JavaScript"],
+    "links": {
+      "live": "https://abu-mujahid.github.io/",
+      "source": "https://github.com/Abu-Mujahid/Abu-Mujahid.github.io"
+    }
+  }
+]

@@ -1,0 +1,11 @@
+/* Smaller project images without touching text layout */
+.projects-grid .project-card .project-media {
+  /* Responsive but capped height */
+  height: clamp(120px, 22vw, 180px);
+}
+
+.projects-grid .project-card .project-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* fill the smaller area nicely */
+}

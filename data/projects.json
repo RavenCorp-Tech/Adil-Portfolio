@@ -2,12 +2,11 @@
   {
     "title": "Arabic Romanizer",
     "description": "AI‑powered Arabic → Roman transliteration tool.",
-    "image": "assets/logo-ravencorp-tech.png",
-    "tags": ["JavaScript", "AI API", "Web App"],
+    "tags": ["JavaScript", "AI", "Web App"],
     "comingSoon": true,
     "links": {
       "live": "",
-      "source": "https://github.com/Abu-Mujahid"
+      "source": "https://github.com/Abu-Mujahid/Arabic-Romanizer"
     }
   },
   {

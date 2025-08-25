@@ -32,6 +32,49 @@
   });
 })();
 
+// Auto-hide header on scroll (hide when scrolling down, show on scroll up)
+(function initAutoHideHeader() {
+  const header = document.querySelector(".site-header");
+  const menu = document.getElementById("nav-menu");
+  if (!header) return;
+
+  let lastY = Math.max(0, window.pageYOffset || window.scrollY);
+  let down = 0, up = 0;
+  const HIDE_AFTER = 16; // pixels of downward scroll before hiding
+  const SHOW_AFTER = 8;  // pixels of upward scroll before showing
+
+  function onScroll() {
+    const y = Math.max(0, window.pageYOffset || window.scrollY);
+    const dy = y - lastY;
+    lastY = y;
+
+    // Always show near top
+    if (y <= 8) {
+      header.classList.remove("hide");
+      down = up = 0;
+      return;
+    }
+
+    // Keep visible when mobile menu is open
+    if (menu && menu.classList.contains("open")) {
+      header.classList.remove("hide");
+      return;
+    }
+
+    if (dy > 0) {
+      // Scrolling down
+      down += dy; up = 0;
+      if (down > HIDE_AFTER) header.classList.add("hide");
+    } else if (dy < 0) {
+      // Scrolling up
+      up += -dy; down = 0;
+      if (up > SHOW_AFTER) header.classList.remove("hide");
+    }
+  }
+
+  window.addEventListener("scroll", onScroll, { passive: true });
+})();
+
 // Reveal on scroll
 (function initReveal() {
   const els = document.querySelectorAll(".reveal");
@@ -142,7 +185,7 @@ loadProjects();
     const endpoint = form.getAttribute("action");
     const data = new FormData(form);
 
-    // If no endpoint configured, open email app with prefilled content
+    // If no endpoint configured, open email app with prefilled content (fallback)
     if (!endpoint) {
       const name = encodeURIComponent(data.get("name"));
       const email = encodeURIComponent(data.get("email"));

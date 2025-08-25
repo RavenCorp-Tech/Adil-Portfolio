@@ -113,6 +113,9 @@ h3 { font-size: clamp(1.05rem, 3.5vw, 1.3rem); }
 .nav-toggle-bar { display: block; width: 24px; height: 2px; background: var(--text); margin: 5px 0; border-radius: 2px; }
 
 .theme-toggle { border: 1px solid var(--border); background: var(--surface-2); color: var(--text); padding: .4rem .5rem; border-radius: 10px; cursor: pointer; box-shadow: var(--glow); }
+/* Ensure the icon inherits the button color (light in dark mode, dark in light mode) */
+.theme-toggle svg { display: block; color: inherit; }
+.theme-toggle svg path { fill: currentColor; }
 
 /* Hero */
 .hero {

@@ -16,12 +16,14 @@
     <meta property="og:url" content="https://abu-mujahid.github.io/" />
     <meta property="og:site_name" content="Raven Corp.Tech" />
     <meta property="og:image" content="https://abu-mujahid.github.io/assets/logo-ravencorp-tech.png" />
+    <meta property="og:image:width" content="1024" />
+    <meta property="og:image:height" content="1024" />
     <meta name="twitter:card" content="summary_large_image" />
 
     <!-- Favicon -->
     <link rel="icon" href="/assets/logo-ravencorp-tech.png" />
 
-    <!-- Futuristic fonts -->
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Oxanium:wght@500;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -33,7 +35,7 @@
     <a class="skip-link" href="#main">Skip to content</a>
 
     <header class="site-header container">
-      <a href="#" class="brand">
+      <a href="/" class="brand">
         <img
           src="/assets/logo-ravencorp-tech.png"
           alt="Raven Corp.Tech logo"
@@ -178,26 +180,27 @@
           <a class="btn" href="https://www.instagram.com/ravencorp.tech?utm_source=qr&igsh=MWZnOHZnYnJkOXc1bA==" target="_blank" rel="noopener">DM on Instagram</a>
         </div>
 
-        <!-- Contact form (provider not configured yet). Set a Formspree/EmailJS action later. -->
+        <!-- Contact form -->
+        <!-- If you later use Formspree, set action="https://formspree.io/f/<your-id>" -->
         <form class="contact-form" id="contact-form" method="POST" action="">
           <label>
             Name
-            <input required name="name" type="text" autocomplete="name" />
+            <input required name="name" type="text" autocomplete="name" minlength="2" />
           </label>
           <label>
             Email
-            <input required name="email" type="email" autocomplete="email" />
+            <input required name="email" type="email" autocomplete="email" inputmode="email" />
           </label>
           <label>
             Message
-            <textarea required name="message" rows="5"></textarea>
+            <textarea required name="message" rows="5" minlength="10" maxlength="2000" placeholder="How can I help?"></textarea>
           </label>
           <!-- Honeypot anti-spam -->
           <input type="text" name="website" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;opacity:0" aria-hidden="true" />
           <button class="btn primary" type="submit">Send</button>
           <p id="form-status" class="small" role="status" aria-live="polite"></p>
+          <p class="small muted">No form provider set. Your email app will open automatically.</p>
         </form>
-        <p class="small muted">Note: Form submissions are disabled until you add a provider endpoint.</p>
       </section>
     </main>
 
@@ -208,7 +211,7 @@
       </p>
     </footer>
 
-    <!-- Structured data -->
+    <!-- Structured data: Person and WebSite -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -224,6 +227,19 @@
         "@type": "Organization",
         "name": "Raven Corp.Tech",
         "url": "https://abu-mujahid.github.io/"
+      }
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Raven Corp.Tech",
+      "url": "https://abu-mujahid.github.io/",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://www.google.com/search?q=site:abu-mujahid.github.io+{search_term}",
+        "query-input": "required name=search_term"
       }
     }
     </script>

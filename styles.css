@@ -16,7 +16,6 @@
   --shadow: 0 10px 30px rgba(0,0,0,.35);
   --maxw: 1120px;
 
-  /* Responsive gutter (safe-area aware) */
   --gutter: clamp(16px, 5vw, 24px);
 }
 
@@ -83,17 +82,13 @@ h3 { font-size: clamp(1.05rem, 3.5vw, 1.3rem); }
   width: 100%;
   display: flex; align-items: center; justify-content: space-between; gap: 1rem;
   padding-block: .75rem;
-  /* Full-width glassy background */
   background: color-mix(in oklab, var(--bg) 88%, black 12%);
   backdrop-filter: saturate(1.2) blur(8px);
   border-bottom: 1px solid var(--border);
-  /* Shadow to look above content */
   box-shadow: 0 8px 24px rgba(0,0,0,.35);
-  /* Slide away on scroll down */
   transform: translateY(0);
   transition: transform .28s ease-in-out, box-shadow .2s ease;
 }
-/* Let header stretch to the edges; keep safe gutters for content */
 .site-header.container {
   max-width: none;
   margin-inline: 0;
@@ -113,9 +108,9 @@ h3 { font-size: clamp(1.05rem, 3.5vw, 1.3rem); }
 .nav-toggle-bar { display: block; width: 24px; height: 2px; background: var(--text); margin: 5px 0; border-radius: 2px; }
 
 .theme-toggle { border: 1px solid var(--border); background: var(--surface-2); color: var(--text); padding: .4rem .5rem; border-radius: 10px; cursor: pointer; box-shadow: var(--glow); }
-/* Ensure the icon inherits the button color (light in dark mode, dark in light mode) */
+/* Make icon use button text color explicitly */
 .theme-toggle svg { display: block; color: inherit; }
-.theme-toggle svg path { fill: currentColor; }
+.theme-toggle svg path { fill: currentColor !important; }
 
 /* Hero */
 .hero {

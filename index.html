@@ -180,9 +180,8 @@
           <a class="btn" href="https://www.instagram.com/ravencorp.tech?utm_source=qr&igsh=MWZnOHZnYnJkOXc1bA==" target="_blank" rel="noopener">DM on Instagram</a>
         </div>
 
-        <!-- Contact form -->
-        <!-- If you later use Formspree, set action="https://formspree.io/f/<your-id>" -->
-        <form class="contact-form" id="contact-form" method="POST" action="">
+        <!-- Contact form (now using Formspree) -->
+        <form class="contact-form" id="contact-form" method="POST" action="https://formspree.io/f/mwpnejyv">
           <label>
             Name
             <input required name="name" type="text" autocomplete="name" minlength="2" />
@@ -195,11 +194,13 @@
             Message
             <textarea required name="message" rows="5" minlength="10" maxlength="2000" placeholder="How can I help?"></textarea>
           </label>
+          <!-- Optional: custom subject for Formspree emails -->
+          <input type="hidden" name="_subject" value="New message from Raven Corp.Tech portfolio" />
           <!-- Honeypot anti-spam -->
           <input type="text" name="website" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;opacity:0" aria-hidden="true" />
           <button class="btn primary" type="submit">Send</button>
           <p id="form-status" class="small" role="status" aria-live="polite"></p>
-          <p class="small muted">No form provider set. Your email app will open automatically.</p>
+          <p class="small muted">Powered by Formspree.</p>
         </form>
       </section>
     </main>

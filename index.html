@@ -59,7 +59,7 @@
           <li>
             <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme" title="Toggle theme">
               <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
-                <path d="M12 3a1 1 0 0 1 1 1v1.05a1 1 0 1 1-2 0V4a1 1 0 0 1 1-1zm0 15.95a1 1 0 0 1 1 1V21a1 1 0 1 1-2 0v-1.05a1 1 0 0 1 1-1zM4 11a1 1 0 1 1 0 2H3a1 1 0 1 1 0-2h1zm18 0a1 1 0 1 1 0 2h-1a1 1 0 0 1 0-2h1zM6.22 5.81a1 1 0 0 1 1.41 0l.74.74a1 1 0 1 1-1.41 1.41l-.74-.74a1 1 0 0 1 0-1.41zm9.41 9.41a1 1 0 0 1 1.41 0l.74.74a1 1 0 1 1-1.41 1.41l-.74-.74a1 1 0 0 1 0-1.41zM6.96 16.22a1 1 0 0 1 0 1.41l-.74.74a1 1 0 1 1-1.41-1.41l.74-.74a1 1 0 0 1 1.41 0zm9.41-9.41a1 1 0 0 1 0 1.41l-.74.74a1 1 0 1 1-1.41-1.41l.74-.74a1 1 0 0 1 1.41 0zM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10z"/>
+                <path fill="currentColor" d="M12 3a1 1 0 0 1 1 1v1.05a1 1 0 1 1-2 0V4a1 1 0 0 1 1-1zm0 15.95a1 1 0 0 1 1 1V21a1 1 0 1 1-2 0v-1.05a1 1 0 0 1 1-1zM4 11a1 1 0 1 1 0 2H3a1 1 0 1 1 0-2h1zm18 0a1 1 0 1 1 0 2h-1a1 1 0 0 1 0-2h1zM6.22 5.81a1 1 0 0 1 1.41 0l.74.74a1 1 0 1 1-1.41 1.41l-.74-.74a1 1 0 0 1 0-1.41zm9.41 9.41a1 1 0 0 1 1.41 0l.74.74a1 1 0 1 1-1.41 1.41l-.74-.74a1 1 0 0 1 0-1.41zM6.96 16.22a1 1 0 0 1 0 1.41l-.74.74a1 1 0 1 1-1.41-1.41l.74-.74a1 1 0 0 1 1.41 0zm9.41-9.41a1 1 0 0 1 0 1.41l-.74.74a1 1 0 1 1-1.41-1.41l.74-.74a1 1 0 0 1 1.41 0zM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10z"/>
               </svg>
             </button>
           </li>
@@ -194,9 +194,7 @@
             Message
             <textarea required name="message" rows="5" minlength="10" maxlength="2000" placeholder="How can I help?"></textarea>
           </label>
-          <!-- Optional: custom subject for Formspree emails -->
           <input type="hidden" name="_subject" value="New message from Raven Corp.Tech portfolio" />
-          <!-- Honeypot anti-spam -->
           <input type="text" name="website" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;opacity:0" aria-hidden="true" />
           <button class="btn primary" type="submit">Send</button>
           <p id="form-status" class="small" role="status" aria-live="polite"></p>

@@ -99,27 +99,63 @@ loadProjects();
   }
 })();
 
-// Contact form (no provider configured yet)
+// Contact form
 (function initContactForm() {
   const form = document.getElementById("contact-form");
   const status = document.getElementById("form-status");
   if (!form || !status) return;
 
+  function setInvalid(el, invalid) {
+    el.setAttribute("aria-invalid", invalid ? "true" : "false");
+  }
+  function validate(form) {
+    const name = form.elements.namedItem("name");
+    const email = form.elements.namedItem("email");
+    const message = form.elements.namedItem("message");
+    let ok = true;
+
+    if (!name.value || name.value.trim().length < 2) { setInvalid(name, true); ok = false; } else setInvalid(name, false);
+
+    const emailVal = (email.value || "").trim();
+    const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailVal);
+    if (!emailOk) { setInvalid(email, true); ok = false; } else setInvalid(email, false);
+
+    if (!message.value || message.value.trim().length < 10) { setInvalid(message, true); ok = false; } else setInvalid(message, false);
+
+    return ok;
+  }
+
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
     status.textContent = "Sending...";
+
     // Honeypot
     if ((form.querySelector('input[name="website"]')?.value || "").trim() !== "") {
       status.textContent = "Spam detected.";
       return;
     }
-    const endpoint = form.getAttribute("action");
-    if (!endpoint) {
-      status.textContent = "Form is not configured yet. Please email me directly at ravencorp.tech@gmail.com.";
+    if (!validate(form)) {
+      status.textContent = "Please correct the highlighted fields.";
       return;
     }
+
+    const endpoint = form.getAttribute("action");
+    const data = new FormData(form);
+
+    // If no endpoint configured, open email app with prefilled content
+    if (!endpoint) {
+      const name = encodeURIComponent(data.get("name"));
+      const email = encodeURIComponent(data.get("email"));
+      const message = encodeURIComponent(data.get("message"));
+      const subject = encodeURIComponent(`Portfolio contact from ${data.get("name")}`);
+      const body = encodeURIComponent(`Name: ${decodeURIComponent(name)}\nEmail: ${decodeURIComponent(email)}\n\n${decodeURIComponent(message)}`);
+      window.location.href = `mailto:ravencorp.tech@gmail.com?subject=${subject}&body=${body}`;
+      status.textContent = "Opening your email app...";
+      form.reset();
+      return;
+    }
+
     try {
-      const data = new FormData(form);
       const res = await fetch(endpoint, {
         method: "POST",
         body: data,

@@ -12,6 +12,7 @@
   {
     "title": "The Olden Ways",
     "description": "A minimal, aesthetic website project.",
+    "image": "assets/projects/the-olden-ways.jpg",
     "tags": ["HTML", "CSS", "JavaScript"],
     "links": {
       "live": "https://abu-mujahid.github.io/The-Olden-Ways/",
@@ -21,6 +22,7 @@
   {
     "title": "Selcouth",
     "description": "A clean, elegant site exploring uncommon aesthetics.",
+    "image": "assets/projects/selcouth.jpg",
     "tags": ["HTML", "CSS", "JavaScript"],
     "links": {
       "live": "https://abu-mujahid.github.io/Selcouth/",

@@ -2,12 +2,29 @@
   {
     "title": "Arabic Romanizer",
     "description": "AI‑powered Arabic → Roman transliteration tool.",
-    "image": "assets/logo-ravencorp-tech.png",
     "tags": ["JavaScript", "AI", "Web App"],
     "comingSoon": true,
     "links": {
       "live": "",
       "source": "https://github.com/Abu-Mujahid/Arabic-Romanizer"
+    }
+  },
+  {
+    "title": "The Olden Ways",
+    "description": "A minimal, aesthetic website project.",
+    "tags": ["HTML", "CSS", "JavaScript"],
+    "links": {
+      "live": "https://abu-mujahid.github.io/The-Olden-Ways/",
+      "source": "https://github.com/Abu-Mujahid/The-Olden-Ways"
+    }
+  },
+  {
+    "title": "Selcouth",
+    "description": "A clean, elegant site exploring uncommon aesthetics.",
+    "tags": ["HTML", "CSS", "JavaScript"],
+    "links": {
+      "live": "https://abu-mujahid.github.io/Selcouth/",
+      "source": "https://github.com/Abu-Mujahid/Selcouth"
     }
   },
   {

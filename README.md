@@ -4,7 +4,7 @@ Personal portfolio for Adil Hasan (Raven Corp.Tech). Dark mode by default with a
 
 ## Live site
 
-https://abu-mujahid.github.io/
+https://ravencorp-tech.github.io/Adil-Portfolio/
 
 ## Quick start
 

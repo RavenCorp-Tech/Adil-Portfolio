@@ -2,6 +2,10 @@
 
 Personal portfolio for Adil Hasan (Raven Corp.Tech). Dark mode by default with a theme toggle, project data from JSON, and a contact form placeholder.
 
+## Live site
+
+https://abu-mujahid.github.io/
+
 ## Quick start
 
 - Save your logo from the chat as `assets/logo-ravencorp-tech.png` (PNG/WebP recommended).
@@ -12,7 +16,7 @@ Personal portfolio for Adil Hasan (Raven Corp.Tech). Dark mode by default with a
 ## Contact form
 
 The form is present but disabled until you add a provider endpoint:
-- Formspree: Set `action="https://formspree.io/f/<your-id>"`.
+- Formspree: Set `action=\"https://formspree.io/f/<your-id>\"`.
 - EmailJS: Add the EmailJS script and configuration, then handle `sendForm` in `script.js`.
 
 ## Deploy to GitHub Pages
@@ -37,7 +41,7 @@ The form is present but disabled until you add a provider endpoint:
 
 ## Project note
 
-- "Arabic Romanizer" is AI‑powered and will use ChatGPT 5 API for improved transliteration accuracy.
+- \"Arabic Romanizer\" is AI‑powered and will use ChatGPT 5 API for improved transliteration accuracy.
 
 ## License
 

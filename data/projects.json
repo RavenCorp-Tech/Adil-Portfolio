@@ -38,5 +38,15 @@
       "live": "https://abu-mujahid.github.io/",
       "source": "https://github.com/Abu-Mujahid/Abu-Mujahid.github.io"
     }
+  },
+  {
+    "title": "The Hashemites Lineages - نسب الهاشميين",
+    "description": "A historical and genealogical website about the Hashemite lineages.",
+    "image": "assets/projects/The-Hashemites-Lineages.png",
+    "tags": ["HTML", "CSS", "JavaScript", "History", "Genealogy"],
+    "links": {
+      "live": "https://ravencorp-tech.github.io/The-Hashemites-Lineages/",
+      "source": "https://github.com/RavenCorp-Tech/The-Hashemites-Lineages"
+    }
   }
 ]

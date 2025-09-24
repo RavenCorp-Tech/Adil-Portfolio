@@ -35,6 +35,37 @@
       toggle.setAttribute("aria-expanded", "false");
     });
   });
+
+  // Touch-friendly activation for nav hover effect
+  const items = menu.querySelectorAll('.fx-nav .fx-item');
+  if (items.length) {
+    let lastActive = null;
+    items.forEach(li => {
+      const link = li.querySelector('a.fx');
+      if (!link) return;
+      let tappedOnce = false;
+      link.addEventListener('touchstart', (e) => {
+        if (!li.classList.contains('active')) {
+          // First tap: activate animation and prevent immediate navigation
+          e.preventDefault();
+          if (lastActive && lastActive !== li) lastActive.classList.remove('active');
+          li.classList.add('active');
+          lastActive = li;
+          tappedOnce = true;
+        } else if (tappedOnce) {
+          // Second tap: allow navigation
+          tappedOnce = false;
+        }
+      }, { passive: false });
+    });
+    // Tap outside to close active state
+    document.addEventListener('touchstart', (e) => {
+      if (!menu.contains(e.target)) {
+        items.forEach(li => li.classList.remove('active'));
+        lastActive = null;
+      }
+    }, { passive: true });
+  }
 })();
 
 // Auto-hide header on scroll (hide when scrolling down, show on scroll up)

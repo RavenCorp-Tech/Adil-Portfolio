@@ -126,8 +126,102 @@
 /* (Reverted) Gooey Marquee styles removed by request */
 
 /* ---------------------------------------------
-   Header nav: gradient hover expand with icons
-   Scoped to .fx-nav to avoid global interference
+   Full-header glass blur (translucent background)
+   Applied across entire sticky header; keeps theme variables
+---------------------------------------------- */
+.site-header {
+  /* Fallback translucent background (significantly more transparent) */
+  background-color: rgba(11, 18, 32, 0.14) !important;
+  /* Preferred layered gradient when supported */
+  background: linear-gradient(180deg, rgba(11,18,32,0.12) 0%, rgba(11,18,32,0.21) 100%) !important;
+  /* Stronger blur to maintain readability with higher transparency */
+  backdrop-filter: saturate(1.2) blur(18px);
+  -webkit-backdrop-filter: saturate(1.2) blur(18px);
+  /* Subtle frosted border and depth */
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  box-shadow: 0 10px 26px rgba(0,0,0,.24);
+  background-clip: padding-box;
+}
+html[data-theme="light"] .site-header {
+  background-color: rgba(255,255,255,0.20) !important;
+  background: linear-gradient(180deg, rgba(255,255,255,0.18) 0%, rgba(255,255,255,0.28) 100%) !important;
+  border-bottom-color: rgba(0,0,0,0.10);
+  box-shadow: 0 8px 18px rgba(0,0,0,.12);
+}
+
+/* Force dark theme glass values explicitly */
+html[data-theme="dark"] .site-header {
+  background-color: rgba(6, 10, 18, 0.12) !important;
+  background: linear-gradient(180deg, rgba(6,10,18,0.10) 0%, rgba(6,10,18,0.22) 100%) !important;
+  backdrop-filter: saturate(1.25) blur(18px);
+  -webkit-backdrop-filter: saturate(1.25) blur(18px);
+  border-bottom-color: rgba(255,255,255,0.08);
+}
+
+/* Smooth scroll for in-page anchors (e.g., Back to top) */
+html { scroll-behavior: smooth; }
+
+/* ---------------------------------------------
+   Header brand: unified neutral glow behind brand
+---------------------------------------------- */
+.brand { position: relative; z-index: 0; }
+.brand img { box-shadow: none !important; }
+.brand-text {
+  /* Remove outline-like effect */
+  text-shadow: none;
+}
+
+/* Single combined glow behind logo + text */
+/* Remove any outer glow around brand (logo + text) */
+.brand::after { content: none !important; }
+html[data-theme="light"] .brand::after { content: none !important; }
+
+/* ---------------------------------------------
+   Brand (header) — normal inline look + VERY subtle neutral glow
+---------------------------------------------- */
+.brand {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: 0; /* no pill padding */
+  border: 0;
+  border-radius: 0;
+  background: transparent; /* not a button */
+  box-shadow: none; /* no button shadow */
+  isolation: auto;
+  backdrop-filter: none;
+}
+.brand::before { content: none !important; }
+.brand img { border-radius: 10px; }
+.brand-text { position: relative; letter-spacing: .3px; opacity: .98; }
+.brand:hover { box-shadow: none; }
+/* Remove shimmer overlay */
+.brand-text::after { content: none !important; }
+
+/* Extremely subtle combined glow behind logo + text (neutral, very low intensity) */
+.brand::after {
+  content: "";
+  position: absolute;
+  inset: -6px; /* tiny margin around combined area */
+  z-index: -1;
+  pointer-events: none;
+  /* Two soft radials to avoid a boxy rectangle look */
+  background:
+    radial-gradient(60% 70% at 22% 50%, rgba(255,255,255,0.06), transparent 70%),
+    radial-gradient(70% 70% at 72% 50%, rgba(255,255,255,0.04), transparent 80%);
+  filter: blur(9px);
+}
+html[data-theme="light"] .brand::after {
+  background:
+    radial-gradient(60% 70% at 22% 50%, rgba(0,0,0,0.05), transparent 70%),
+    radial-gradient(70% 70% at 72% 50%, rgba(0,0,0,0.03), transparent 80%);
+  filter: blur(7px);
+}
+
+/* ---------------------------------------------
+  Header nav: gradient hover expand with icons
+  Scoped to .fx-nav to avoid global interference
 ---------------------------------------------- */
 .fx-nav { gap: 12px; }
 .fx-nav .fx-item {
@@ -169,13 +263,13 @@
   opacity: 0;
   transition: opacity .45s ease;
 }
-.fx-nav .fx-item:hover {
+.fx-nav .fx-item:is(:hover, :focus-within, .active) {
   width: 180px;
   box-shadow: 0 10px 28px rgba(0,0,0,0.28);
   border-color: color-mix(in oklab, var(--text) 20%, var(--border));
 }
-.fx-nav .fx-item:hover::before { opacity: 1; }
-.fx-nav .fx-item:hover::after { opacity: .55; }
+.fx-nav .fx-item:is(:hover, :focus-within, .active)::before { opacity: 1; }
+.fx-nav .fx-item:is(:hover, :focus-within, .active)::after { opacity: .55; }
 
 /* Anchor structure inside item */
 .fx-nav .fx {
@@ -209,28 +303,23 @@
   transform: scale(0);
   transition: transform .45s ease;
 }
-.fx-nav .fx-item:hover .icon {
+.fx-nav .fx-item:is(:hover, :focus-within, .active) .icon {
   transform: scale(0);
   color: #fff;
 }
-.fx-nav .fx-item:hover .title { transform: scale(1); }
+.fx-nav .fx-item:is(:hover, :focus-within, .active) .title { transform: scale(1); }
 
 /* Light theme tweaks */
 html[data-theme="light"] .fx-nav .icon { color: #5b657a; }
 html[data-theme="light"] .fx-nav .title { color: #fff; }
 
-/* Mobile menu: show titles without animation and avoid width expansion */
+/* Mobile: keep effect, just tighten gaps */
 @media (max-width: 760px) {
   .fx-nav { gap: .5rem; }
-  .fx-nav .fx-item {
-    width: auto; height: auto; border-radius: 12px; overflow: visible;
-    box-shadow: none;
-  }
-  .fx-nav .fx-item::before, .fx-nav .fx-item::after { display: none; }
-  .fx-nav .fx {
-    padding: .6rem .8rem; gap: .5rem; width: auto; height: auto;
-    border-radius: 10px; border: 1px solid var(--border); background: var(--surface-2);
-  }
-  .fx-nav .icon { transform: none !important; color: inherit; }
-  .fx-nav .title { transform: none; color: inherit; text-transform: none; letter-spacing: .02em; font-size: .95rem; }
+  /* default compact state size; expands on interaction */
+  .fx-nav .fx-item { width: 48px; height: 48px; }
+  .fx-nav .fx { padding: 0 .9rem; }
 }
+
+/* Removed duplicate header glass block and conflicting shimmer sweep to ensure the
+   earlier translucent header settings and neutral brand glow take effect. */

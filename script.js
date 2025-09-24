@@ -11,6 +11,11 @@
       const next = current === "light" ? "dark" : "light";
       document.documentElement.setAttribute("data-theme", next);
       localStorage.setItem(key, next);
+      // If switching to dark, force starfield regeneration
+      if (next === 'dark') {
+        window.__starsNeedsRegen = true;
+      }
+      if (typeof window.__regenStars === 'function') window.__regenStars();
     });
   }
 })();
@@ -215,4 +220,118 @@ loadProjects();
       status.textContent = "Network error. Please email me directly.";
     }
   });
+})();
+
+// Starfield generator (replaces fallback shadows for richer field)
+// Generates deterministic random positions for performance & consistency per session.
+(function initStarfield(){
+  const layers = [
+    { id: 'stars', count: 700, size: 1 },
+    { id: 'stars2', count: 200, size: 2 },
+    { id: 'stars3', count: 100, size: 3 }
+  ];
+  function rand(max){ return Math.floor(Math.random()*max); }
+  function build(count){
+    const parts = new Array(count);
+    for (let i=0;i<count;i++) {
+      parts[i] = `${rand(2000)}px ${rand(2000)}px #FFF`;
+    }
+    return parts.join(', ');
+  }
+  function apply(){
+    const dark = (document.documentElement.getAttribute('data-theme')||'dark') === 'dark';
+    layers.forEach(l => {
+      const el = document.getElementById(l.id);
+      if (!el) return;
+      if (!dark) {
+        el.style.boxShadow = 'none';
+        // Mark as needing regen next time we go dark
+        el.dataset.generated = '';
+        return;
+      }
+      // Keep existing if already generated (avoid layout thrash) unless resizing beyond threshold
+      if (!el.dataset.generated || el.style.boxShadow === 'none' || window.__starsNeedsRegen) {
+        el.style.boxShadow = build(l.count);
+        el.dataset.generated = 'true';
+      }
+    });
+    window.__starsNeedsRegen = false;
+  }
+  window.__regenStars = apply;
+  // Regenerate on large viewport resize (debounced)
+  let lastW = window.innerWidth, lastH = window.innerHeight; let to;
+  window.addEventListener('resize', () => {
+    clearTimeout(to);
+    to = setTimeout(() => {
+      const dw = Math.abs(window.innerWidth - lastW);
+      const dh = Math.abs(window.innerHeight - lastH);
+      if (dw > 200 || dh > 200) { // significant change
+        lastW = window.innerWidth; lastH = window.innerHeight;
+        window.__starsNeedsRegen = true;
+        apply();
+      }
+    }, 280);
+  }, { passive: true });
+  // Initial
+  document.addEventListener('DOMContentLoaded', apply);
+})();
+
+// (Removed) Logo Card Slider JS - replaced by simple hover effect on static logo
+
+// Logo card 3D tilt on hover (mouse move)
+(function initLogoTilt(){
+  const card = document.querySelector('.logo-card');
+  if (!card) return;
+
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (prefersReduced) return;
+
+  const maxTilt = 10; // degrees
+  const damp = 0.9; // easing when leaving
+
+  let rect = card.getBoundingClientRect();
+  let raf = null;
+  let targetRX = 0, targetRY = 0, currentRX = 0, currentRY = 0;
+
+  function schedule() {
+    if (raf) return;
+    raf = requestAnimationFrame(() => {
+      raf = null;
+      currentRX += (targetRX - currentRX) * 0.18;
+      currentRY += (targetRY - currentRY) * 0.18;
+      // Compose subtle scale for pop-out only while hovered;
+      // translateZ is applied to inner layers via CSS var --pop
+      const scale = card.matches(':hover') ? 1.03 : 1.0;
+      card.style.transform = `rotateX(${currentRX}deg) rotateY(${currentRY}deg) scale(${scale})`;
+    });
+  }
+
+  function onMove(e){
+    const x = (e.touches ? e.touches[0].clientX : e.clientX) - rect.left;
+    const y = (e.touches ? e.touches[0].clientY : e.clientY) - rect.top;
+    const cx = rect.width/2; const cy = rect.height/2;
+    const dx = (x - cx) / cx; // -1..1
+    const dy = (y - cy) / cy; // -1..1
+    targetRY = dx * maxTilt;      // rotateY: left/right
+    targetRX = -dy * maxTilt;     // rotateX: up/down (invert for natural feel)
+    // move highlight
+    card.style.setProperty('--mx', `${x}px`);
+    card.style.setProperty('--my', `${y}px`);
+    schedule();
+  }
+
+  function onEnter(){
+    rect = card.getBoundingClientRect();
+  }
+  function onLeave(){
+    targetRX = 0; targetRY = 0; schedule();
+  }
+
+  card.addEventListener('mouseenter', onEnter);
+  card.addEventListener('mousemove', onMove);
+  card.addEventListener('mouseleave', onLeave);
+  // Touch support (optional gentle parallax)
+  card.addEventListener('touchstart', onEnter, { passive: true });
+  card.addEventListener('touchmove', onMove, { passive: true });
+  card.addEventListener('touchend', onLeave, { passive: true });
 })();

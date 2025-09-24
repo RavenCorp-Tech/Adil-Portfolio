@@ -5,17 +5,44 @@
   // default is dark (from HTML attribute)
   if (saved) document.documentElement.setAttribute("data-theme", saved);
   const btn = document.getElementById("theme-toggle");
+  function setToggleIcon(theme) {
+    if (!btn) return;
+    const isLight = theme === 'light';
+    // Use Ionicons: sunny for light, moon for dark
+    btn.innerHTML = `<ion-icon name="${isLight ? 'sunny-outline' : 'moon-outline'}" aria-hidden="true"></ion-icon>`;
+    btn.setAttribute('title', isLight ? 'Switch to dark theme' : 'Switch to light theme');
+    btn.setAttribute('aria-label', isLight ? 'Switch to dark theme' : 'Switch to light theme');
+  }
+  // Initialize icon based on current theme
+  setToggleIcon(document.documentElement.getAttribute('data-theme') || 'dark');
   if (btn) {
     btn.addEventListener("click", () => {
       const current = document.documentElement.getAttribute("data-theme") || "dark";
       const next = current === "light" ? "dark" : "light";
+
+      // Add global transition classes briefly
+      const transitionTargets = [document.documentElement, document.body,
+        document.querySelector('.site-header'),
+        document.getElementById('nav-menu'),
+        ...document.querySelectorAll('.project-card, .card, .chips li, .tag, .btn')
+      ].filter(Boolean);
+      transitionTargets.forEach(el => el.classList.add('theme-transition'));
+      btn.classList.add('theming');
+
       document.documentElement.setAttribute("data-theme", next);
       localStorage.setItem(key, next);
+      setToggleIcon(next);
       // If switching to dark, force starfield regeneration
       if (next === 'dark') {
         window.__starsNeedsRegen = true;
       }
       if (typeof window.__regenStars === 'function') window.__regenStars();
+
+      // Remove helper classes after transition completes
+      setTimeout(() => {
+        transitionTargets.forEach(el => el.classList.remove('theme-transition'));
+        btn.classList.remove('theming');
+      }, 400);
     });
   }
 })();

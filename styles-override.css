@@ -160,6 +160,25 @@ html[data-theme="dark"] .site-header {
 
 /* Smooth scroll for in-page anchors (e.g., Back to top) */
 html { scroll-behavior: smooth; }
+/* Theme toggle icon sizing for Ionicons */
+.theme-toggle ion-icon { font-size: 20px; line-height: 1; display: block; }
+
+/* ---------------------------------------------
+   Theme change animations
+   - Smoothly transition colors and backgrounds
+   - Animate theme icon briefly
+---------------------------------------------- */
+html.theme-transition, body.theme-transition, .site-header.theme-transition, .nav-menu.theme-transition, .project-card.theme-transition, .card.theme-transition, .chips li.theme-transition, .tag.theme-transition, .btn.theme-transition {
+  transition: background-color .35s ease, color .35s ease, border-color .35s ease, box-shadow .35s ease;
+}
+.theme-toggle.theming ion-icon {
+  animation: spin-pop .45s ease;
+}
+@keyframes spin-pop {
+  0% { transform: rotate(-90deg) scale(.85); opacity: .6; }
+  60% { transform: rotate(10deg) scale(1.05); opacity: 1; }
+  100% { transform: rotate(0deg) scale(1); }
+}
 
 /* ---------------------------------------------
    Header brand: unified neutral glow behind brand
@@ -211,12 +230,54 @@ html[data-theme="light"] .brand::after { content: none !important; }
     radial-gradient(60% 70% at 22% 50%, rgba(255,255,255,0.06), transparent 70%),
     radial-gradient(70% 70% at 72% 50%, rgba(255,255,255,0.04), transparent 80%);
   filter: blur(9px);
+  opacity: .55;
+  transition: opacity .2s ease, filter .2s ease;
 }
 html[data-theme="light"] .brand::after {
   background:
     radial-gradient(60% 70% at 22% 50%, rgba(0,0,0,0.05), transparent 70%),
     radial-gradient(70% 70% at 72% 50%, rgba(0,0,0,0.03), transparent 80%);
   filter: blur(7px);
+}
+
+/* Slightly stronger glow when hovering over brand (logo + text) */
+.brand:hover::after { opacity: .95; filter: blur(11px); }
+.brand:hover .brand-text { text-shadow: 0 0 10px rgba(255,255,255,0.12); }
+html[data-theme="light"] .brand:hover .brand-text { text-shadow: 0 0 10px rgba(0,0,0,0.12); }
+
+/* ---------------------------------------------
+   Mobile nav toggle: animate hamburger -> cross
+   Uses aria-expanded on the button set by JS
+---------------------------------------------- */
+@media (max-width: 760px) {
+  .nav-toggle {
+    width: 36px;
+    height: 30px;
+    display: inline-block; /* stack bars vertically like classic hamburger */
+    position: relative;
+  }
+  .nav-toggle-bar {
+    width: 24px;
+    height: 2px;
+    background: var(--text);
+    border-radius: 2px;
+    display: block; /* ensure each bar takes a line */
+    position: relative;
+    transition: transform .28s ease, opacity .2s ease, background-color .2s ease;
+  }
+  .nav-toggle-bar + .nav-toggle-bar { margin-top: 6px; }
+
+  /* Turn into an X when menu is open */
+  .nav-toggle[aria-expanded="true"] .nav-toggle-bar:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+  }
+  .nav-toggle[aria-expanded="true"] .nav-toggle-bar:nth-child(2) {
+    opacity: 0;
+    transform: scaleX(0.8);
+  }
+  .nav-toggle[aria-expanded="true"] .nav-toggle-bar:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+  }
 }
 
 /* ---------------------------------------------

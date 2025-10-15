@@ -2,11 +2,11 @@
   {
     "title": "Arabic Romanizer",
     "description": "AI‑powered Arabic → Roman transliteration tool.",
+    "image": "assets/projects/Arabic.jpg",
     "tags": ["JavaScript", "AI", "Web App"],
     "comingSoon": true,
     "links": {
-      "live": "",
-      "source": "https://github.com/Abu-Mujahid/Arabic-Romanizer"
+      "live": ""
     }
   },
   {
@@ -15,8 +15,7 @@
     "image": "assets/projects/the-olden-ways.jpg",
     "tags": ["HTML", "CSS", "JavaScript"],
     "links": {
-      "live": "https://abu-mujahid.github.io/The-Olden-Ways/",
-      "source": "https://github.com/Abu-Mujahid/The-Olden-Ways"
+      "live": "https://ravencorp-tech.github.io/The-Olden-Ways/"
     }
   },
   {
@@ -25,8 +24,7 @@
     "image": "assets/projects/selcouth.jpg",
     "tags": ["HTML", "CSS", "JavaScript"],
     "links": {
-      "live": "https://abu-mujahid.github.io/Selcouth/",
-      "source": "https://github.com/Abu-Mujahid/Selcouth"
+      "live": "https://ravencorp-tech.github.io/Selcouth/"
     }
   },
   {
@@ -35,18 +33,37 @@
     "image": "assets/logo-ravencorp-tech.png",
     "tags": ["HTML", "CSS", "JavaScript"],
     "links": {
-      "live": "https://abu-mujahid.github.io/",
-      "source": "https://github.com/Abu-Mujahid/Abu-Mujahid.github.io"
+      "live": "https://ravencorp-tech.github.io/Adil-Portfolio/"
     }
   },
   {
-  "title": "The Hashemites Lineages - نسب الهاشميين",
-  "description": "A historical and genealogical website about the Hashemite lineages.",
+  "title": "The Nobles of Sudan - أشراف السودان",
+  "description": "The official historical and genealogical website of the Nobles of Sudan (أشراف السودان), documenting their Hashemite lineage, families, and heritage.",
   "image": "assets/projects/The-Hashemites-Lineages.png",
   "tags": ["HTML", "CSS", "JavaScript", "History", "Genealogy"],
   "links": {
-    "live": "https://ravencorp-tech.github.io/The-Hashemites-Lineages/",
-    "source": "https://github.com/RavenCorp-Tech/The-Hashemites-Lineages"
+    "live": "https://ravencorp-tech.github.io/The-Hashemites-Lineages/"
   }
 }
+,
+  {
+    "title": "The Official Website of Shaykh Dr. Khālid al-Ḥāyik",
+    "description": "A dedicated site presenting the work, teachings, and publications of Shaykh Dr. Khālid al-Ḥāyik, with curated articles, lectures, and resources.",
+    "image": "assets/projects/Shaykh-Khalid.png",
+    "tags": ["HTML", "CSS", "JavaScript"],
+    "links": {
+      "live": "https://ravencorp-tech.github.io/Addyaiya/"
+    }
+  }
+  ,
+  {
+    "title": "VeoCreator",
+    "description": "An AI‑powered video generation tool that uses Google Gemini’s Veo 3 model to turn your text prompts into videos. Compose scenes, iterate styles, and refine outputs — coming soon.",
+    "image": "assets/projects/VeoCreator.jpg",
+    "tags": ["JavaScript", "Web App", "Creative Tools", "AI"],
+    "comingSoon": true,
+    "links": {
+      "live": ""
+    }
+  }
 ]

@@ -163,6 +163,9 @@ html { scroll-behavior: smooth; }
 /* Theme toggle icon sizing for Ionicons */
 .theme-toggle ion-icon { font-size: 20px; line-height: 1; display: block; }
 
+/* Spacing: policy card under About should not touch the highlights list */
+.about-grid .highlights + .card { margin-top: 1.25rem; }
+
 /* ---------------------------------------------
    Theme change animations
    - Smoothly transition colors and backgrounds

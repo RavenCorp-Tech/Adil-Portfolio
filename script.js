@@ -393,3 +393,82 @@ loadProjects();
   card.addEventListener('touchmove', onMove, { passive: true });
   card.addEventListener('touchend', onLeave, { passive: true });
 })();
+
+// Chatbot frontend logic (Raven AI)
+(function initChatbot(){
+  const icon = document.getElementById('chat-icon');
+  const popup = document.getElementById('chat-popup');
+  const closeBtn = document.getElementById('chat-close-btn');
+  const form = document.getElementById('chat-form');
+  const input = document.getElementById('chat-input');
+  const messages = document.getElementById('chat-messages');
+  if (!icon || !popup || !closeBtn || !form || !input || !messages) return;
+  // Backend base resolution:
+  // - If window.CHAT_API_BASE defined, use it (allows production override)
+  // - If same-origin dev (localhost:3000) keep relative path ('')
+  // - Otherwise leave empty so fetch('/api/chat') will fail fast and we can show a helpful message
+  //   instead of erroneously calling device-local localhost which breaks on mobile.
+  const API_BASE = (() => {
+    if (window.CHAT_API_BASE) return String(window.CHAT_API_BASE).replace(/\/$/, '');
+    if (location.hostname === 'localhost' && location.port === '3000') return '';
+    return ''; // Expect reverse proxy or same host; for GitHub Pages this must be set via window.CHAT_API_BASE.
+  })();
+
+  function openChat(){
+    popup.style.display = 'flex';
+    popup.setAttribute('aria-hidden','false');
+    input.focus();
+  }
+  function closeChat(){
+    popup.style.display = 'none';
+    popup.setAttribute('aria-hidden','true');
+    icon.focus();
+  }
+
+  icon.addEventListener('click', openChat);
+  icon.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openChat(); }});
+  closeBtn.addEventListener('click', closeChat);
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && popup.style.display === 'flex') closeChat(); });
+  document.addEventListener('click', e => { if (popup.style.display === 'flex' && !popup.contains(e.target) && e.target !== icon) closeChat(); });
+
+  function addMessage(text, sender, opts={}){
+    const wrap = document.createElement('div');
+    wrap.className = 'chat-message ' + (sender === 'user' ? 'user-message' : 'raven-message');
+    if (opts.id) wrap.id = opts.id;
+    const p = document.createElement('p');
+    p.textContent = text;
+    wrap.appendChild(p);
+    messages.appendChild(wrap);
+    messages.scrollTop = messages.scrollHeight;
+  }
+  function removeTyping(){ const el = document.getElementById('typing-indicator'); if (el) el.remove(); }
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const q = input.value.trim();
+    if (!q) return;
+    addMessage(q, 'user');
+    input.value = '';
+    addMessage('Raven is typing…', 'raven', { id: 'typing-indicator' });
+    try {
+      const endpoint = (API_BASE ? `${API_BASE}/api/chat` : '/api/chat');
+      const res = await fetch(endpoint, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ question: q })
+      });
+      if (!res.ok) throw new Error('Network error: ' + res.status);
+      const data = await res.json();
+      removeTyping();
+      const answer = data.answer || "I'm sorry, ʿĀdil hasn't provided that information on his portfolio.";
+      addMessage(answer, 'raven');
+    } catch (err) {
+      console.error('Chat error', err);
+      removeTyping();
+      const guidance = API_BASE === '' && !(location.hostname === 'localhost' && location.port === '3000')
+        ? 'Backend not reachable. Define window.CHAT_API_BASE with your server URL.'
+        : "Sorry, I'm having trouble connecting right now.";
+      addMessage(guidance, 'raven');
+    }
+  });
+})();

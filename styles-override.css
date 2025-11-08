@@ -387,3 +387,108 @@ html[data-theme="light"] .fx-nav .title { color: #fff; }
 
 /* Removed duplicate header glass block and conflicting shimmer sweep to ensure the
    earlier translucent header settings and neutral brand glow take effect. */
+
+/* =================== CHATBOT CSS START =================== */
+:root {
+  --chat-accent: var(--brand, #6c63ff);
+  --chat-bg: var(--surface, #0f1424);
+  --chat-panel: rgba(255,255,255,0.06);
+  --chat-border: rgba(255,255,255,0.08);
+  --chat-text: var(--text, #e7ecff);
+}
+[data-theme="light"] {
+  --chat-bg: var(--surface, #ffffff);
+  --chat-panel: rgba(0,0,0,0.04);
+  --chat-border: rgba(0,0,0,0.08);
+  --chat-text: var(--text, #1b2337);
+}
+.chat-icon {
+  position: fixed;
+  bottom: 22px;
+  right: 22px;
+  width: 56px;
+  height: 56px;
+  background: radial-gradient(120% 120% at 10% 10%, var(--chat-accent), color-mix(in srgb, var(--chat-accent) 60%, #000));
+  color: #fff;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 26px;
+  cursor: pointer;
+  z-index: 1000;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.35), inset 0 0 18px rgba(255,255,255,0.12);
+  transition: transform .2s ease, box-shadow .25s ease, filter .25s ease;
+  backdrop-filter: blur(2px);
+}
+.chat-icon:hover { transform: translateY(-2px) scale(1.05); box-shadow: 0 14px 34px rgba(0,0,0,0.42), inset 0 0 20px rgba(255,255,255,0.16); }
+.chat-icon:active { transform: translateY(0) scale(0.98); }
+.chat-icon:focus { outline: 2px solid var(--chat-accent); outline-offset: 3px; }
+.chat-popup {
+  display: none;
+  position: fixed;
+  bottom: 96px;
+  right: 22px;
+  width: min(92vw, 360px);
+  max-height: min(68vh, 560px);
+  background: linear-gradient(180deg, color-mix(in srgb, var(--chat-panel) 75%, transparent), var(--chat-panel));
+  border-radius: 16px;
+  border: 1px solid var(--chat-border);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.45), inset 0 1px rgba(255,255,255,0.08);
+  z-index: 1001;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  backdrop-filter: saturate(120%) blur(10px);
+  color: var(--chat-text);
+}
+.chat-header {
+  background: linear-gradient(135deg, color-mix(in srgb, var(--chat-accent) 70%, #000), var(--chat-accent));
+  color: #fff;
+  padding: 12px 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.chat-header h3 { margin: 0; font-size: 1rem; letter-spacing: .3px; }
+.chat-close-btn {
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
+  filter: drop-shadow(0 1px 1px rgba(0,0,0,.35));
+}
+.chat-close-btn:hover { opacity: .9; }
+.chat-messages {
+  flex-grow: 1;
+  padding: 14px;
+  overflow-y: auto;
+  height: 320px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.chat-message { padding: 10px 14px; border-radius: 14px; max-width: 82%; font-family: "Space Grotesk", system-ui, Arial, sans-serif; }
+.raven-message { background: rgba(255,255,255,0.08); color: var(--chat-text); align-self: flex-start; border: 1px solid var(--chat-border); }
+.user-message { background: var(--chat-accent); color: #fff; align-self: flex-end; box-shadow: 0 6px 16px rgba(0,0,0,0.35); }
+.chat-message p { margin: 0; word-wrap: break-word; }
+.chat-form { display: flex; gap: 10px; border-top: 1px solid var(--chat-border); padding: 10px; }
+.chat-form input {
+  flex: 1;
+  border: 1px solid var(--chat-border);
+  padding: 10px 12px;
+  border-radius: 10px;
+  background: rgba(255,255,255,0.06);
+  color: var(--chat-text);
+}
+.chat-form input::placeholder { color: color-mix(in srgb, var(--chat-text) 60%, transparent); }
+.chat-form input:focus { outline: 2px solid color-mix(in srgb, var(--chat-accent) 60%, transparent); background: rgba(255,255,255,0.1); }
+.chat-form button { white-space: nowrap; }
+.visually-hidden { position: absolute !important; height: 1px; width: 1px; overflow: hidden; clip: rect(1px,1px,1px,1px); white-space: nowrap; }
+@media (max-width: 480px) {
+  .chat-popup { bottom: 84px; right: 14px; width: min(94vw, 340px); }
+  .chat-icon { bottom: 16px; right: 16px; }
+}
+/* =================== CHATBOT CSS END =================== */

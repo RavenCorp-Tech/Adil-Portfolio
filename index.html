@@ -291,5 +291,26 @@
     <!-- Icons: Ionicons for header nav -->
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+    <!-- Chatbot UI -->
+    <div class="chat-icon" id="chat-icon" aria-label="Open Raven AI chat" role="button" tabindex="0">
+      <span aria-hidden="true">🤖</span>
+    </div>
+    <div class="chat-popup" id="chat-popup" role="dialog" aria-modal="true" aria-labelledby="chat-title" aria-hidden="true">
+      <div class="chat-header">
+        <h3 id="chat-title">Raven AI</h3>
+        <button class="chat-close-btn" id="chat-close-btn" aria-label="Close chat" title="Close chat">&times;</button>
+      </div>
+      <div class="chat-messages" id="chat-messages">
+        <div class="chat-message raven-message">
+          <p>Hello! I'm Raven, ʿĀdil's AI assistant. Ask me anything about his projects or skills.</p>
+        </div>
+      </div>
+      <form class="chat-form" id="chat-form" autocomplete="off" novalidate>
+        <label class="visually-hidden" for="chat-input">Ask a question</label>
+        <input type="text" id="chat-input" placeholder="Ask a question..." aria-label="Ask a question" />
+        <button type="submit" class="btn primary" aria-label="Send message">Send</button>
+      </form>
+    </div>
   </body>
 </html>

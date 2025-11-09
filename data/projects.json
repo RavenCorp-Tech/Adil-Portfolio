@@ -29,7 +29,7 @@
   },
   {
     "title": "Portfolio Website",
-    "description": "This site — responsive, SEO‑friendly personal portfolio.",
+    "description": "This site — a responsive, SEO‑friendly personal portfolio featuring a built‑in AI Assistant chatbot powered by Google Gemini.",
     "image": "assets/logo-ravencorp-tech.png",
     "tags": ["HTML", "CSS", "JavaScript"],
     "links": {

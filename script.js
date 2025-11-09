@@ -414,20 +414,28 @@ loadProjects();
     return ''; // Expect reverse proxy or same host; for GitHub Pages this must be set via window.CHAT_API_BASE.
   })();
 
-  function openChat(){
-    popup.style.display = 'flex';
-    popup.setAttribute('aria-hidden','false');
-    input.focus();
-  }
-  function closeChat(){
-    popup.style.display = 'none';
-    popup.setAttribute('aria-hidden','true');
-    icon.focus();
+  function toggleChat(){
+    const isOpen = popup.style.display === 'flex';
+    if (isOpen) {
+      popup.style.display = 'none';
+      popup.setAttribute('aria-hidden','true');
+      icon.setAttribute('aria-expanded','false');
+      icon.focus();
+    } else {
+      popup.style.display = 'flex';
+      popup.setAttribute('aria-hidden','false');
+      icon.setAttribute('aria-expanded','true');
+      input.focus();
+    }
   }
 
-  icon.addEventListener('click', openChat);
-  icon.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openChat(); }});
-  closeBtn.addEventListener('click', closeChat);
+  icon.addEventListener('click', toggleChat);
+  icon.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggleChat(); }});
+  closeBtn.addEventListener('click', toggleChat);
+  // Close on outside click only if open
+  document.addEventListener('click', e => { if (popup.style.display === 'flex' && !popup.contains(e.target) && e.target !== icon) toggleChat(); });
+  // Escape key should close if open
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && popup.style.display === 'flex') toggleChat(); });
   document.addEventListener('keydown', e => { if (e.key === 'Escape' && popup.style.display === 'flex') closeChat(); });
   document.addEventListener('click', e => { if (popup.style.display === 'flex' && !popup.contains(e.target) && e.target !== icon) closeChat(); });
 

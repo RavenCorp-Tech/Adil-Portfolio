@@ -354,28 +354,29 @@ html[data-theme="light"] .brand:hover .brand-text { text-shadow: 0 0 10px rgba(0
 .fx-nav a:hover { background: transparent; box-shadow: none; text-decoration: none; }
 
 .fx-nav .icon {
-  display: inline-flex;
-  font-size: 1.25rem;
-  color: #9aa7c6; /* subtle in dark, overridden by gradient on hover */
-  transition: transform .45s ease, color .45s ease;
-}
-.fx-nav .title {
+  position: fixed;
+  bottom: 18px;
+  right: 18px;
+  width: 44px;
+  height: 44px;
+  background: linear-gradient(145deg, #111b2d, #1d2a42);
+  border: 1px solid color-mix(in srgb, var(--chat-accent) 30%, #111);
   color: #fff;
-  font-size: .98rem;
-  letter-spacing: .06em;
-  text-transform: uppercase;
-  transform: scale(0);
-  transition: transform .45s ease;
-}
-.fx-nav .fx-item:is(:hover, :focus-within, .active) .icon {
-  transform: scale(0);
-  color: #fff;
-}
+  border-radius: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 0;
+  cursor: pointer;
+  z-index: 1000;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.05);
+  transition: transform .18s ease, box-shadow .25s ease, background .35s ease;
+  backdrop-filter: blur(4px) saturate(120%);
 .fx-nav .fx-item:is(:hover, :focus-within, .active) .title { transform: scale(1); }
-
-/* Light theme tweaks */
-html[data-theme="light"] .fx-nav .icon { color: #5b657a; }
-html[data-theme="light"] .fx-nav .title { color: #fff; }
+.chat-icon:hover { transform: translateY(-2px); box-shadow: 0 10px 26px rgba(0,0,0,0.55), 0 0 0 1px var(--chat-accent); }
+.chat-icon:active { transform: translateY(0); box-shadow: 0 4px 10px rgba(0,0,0,0.6), 0 0 0 1px var(--chat-accent); }
+.chat-icon:focus { outline: 2px solid var(--chat-accent); outline-offset: 2px; }
+.chat-icon .gemini-color { display: block; width: 22px; height: 22px; filter: drop-shadow(0 0 4px rgba(111,90,255,0.6)) drop-shadow(0 0 2px rgba(8,185,98,0.4)); }
 
 /* Mobile: keep effect, just tighten gaps */
 @media (max-width: 760px) {

@@ -414,13 +414,15 @@ html[data-theme="light"] .fx-nav .title { color: #fff; }
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 26px;
+  /* Icon size comes from inline SVG; keep font-size neutral */
+  font-size: 0;
   cursor: pointer;
   z-index: 1000;
   box-shadow: 0 10px 30px rgba(0,0,0,0.35), inset 0 0 18px rgba(255,255,255,0.12);
   transition: transform .2s ease, box-shadow .25s ease, filter .25s ease;
   backdrop-filter: blur(2px);
 }
+.chat-icon .gemini-color { display: block; width: 28px; height: 28px; }
 .chat-icon:hover { transform: translateY(-2px) scale(1.05); box-shadow: 0 14px 34px rgba(0,0,0,0.42), inset 0 0 20px rgba(255,255,255,0.16); }
 .chat-icon:active { transform: translateY(0) scale(0.98); }
 .chat-icon:focus { outline: 2px solid var(--chat-accent); outline-offset: 3px; }

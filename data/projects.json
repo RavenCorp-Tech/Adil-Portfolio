@@ -28,6 +28,33 @@
     }
   },
   {
+    "title": "Maleeha Cafe",
+    "description": "Maleeha Cafe is more than just a coffee shop — a warm, Yemen-inspired space and comfortable sanctuary for women, girls, and children, with authentic Adani Chai and a dedicated kids playground.",
+    "image": "assets/projects/Maleeha-Cafe.png",
+    "tags": ["HTML", "CSS", "JavaScript"],
+    "links": {
+      "live": "https://ravencorp-tech.github.io/Maleeha-Cafe/"
+    }
+  },
+  {
+    "title": "Crossroads - Drinks & Desserts",
+    "description": "A bilingual menu site for Crossroads Drinks & Desserts (Umm Al Quwain) — ‘Midnight Cravings’ with signature desserts and exclusive drinks, homemade with love.",
+    "image": "assets/projects/Crossroads.png",
+    "tags": ["HTML", "CSS", "JavaScript"],
+    "links": {
+      "live": "https://ravencorp-tech.github.io/Crossroads/"
+    }
+  },
+  {
+    "title": "ORO Coffee",
+    "description": "A modern premium café landing page for ORO Coffee (Umm Al-Quwain) — a refined coffee ritual with premium ingredients, modern comfort, and offerings from espresso to matcha and signature refreshments.",
+    "image": "assets/projects/Oro-Coffee.png",
+    "tags": ["HTML", "CSS", "JavaScript"],
+    "links": {
+      "live": "https://ravencorp-tech.github.io/Oro-Coffee/"
+    }
+  },
+  {
     "title": "Portfolio Website",
     "description": "This site — a responsive, SEO‑friendly personal portfolio featuring a built‑in AI Assistant chatbot powered by Google Gemini.",
     "image": "assets/logo-ravencorp-tech.png",
@@ -38,7 +65,7 @@
   },
   {
   "title": "The Nobles of Sudan - أشراف السودان",
-  "description": "The official historical and genealogical website of the Nobles of Sudan (أشراف السودان), documenting their Hashemite lineage, families, and heritage.",
+  "description": "The official historical and genealogical website of the Nobles of Sudan (أشراف السودان), documenting their Hashemite lineage, families, and heritage — with an Express + Node.js backend powering a staff admin portal to add/edit/delete certificates and a public verification page.",
   "image": "assets/projects/The-Hashemites-Lineages.png",
   "tags": ["HTML", "CSS", "JavaScript", "History", "Genealogy"],
   "links": {

@@ -118,6 +118,31 @@
   animation: hero-mask-slide 5s infinite alternate linear;
 }
 
+/* ---------------------------------------------
+   Hero sizing (desktop)
+   - Make hero taller so Projects isn't visible on load
+   - Keep mobile layout unchanged
+---------------------------------------------- */
+@media (min-width: 901px) {
+  .hero {
+    /* Fill most of the viewport while accounting for sticky header */
+    min-height: calc(100vh - 92px);
+    min-height: calc(100svh - 92px);
+    padding-top: 4.75rem;
+    padding-bottom: 3.5rem;
+  }
+
+  .hero .tagline {
+    font-size: 1.15rem;
+    margin-bottom: .75rem;
+  }
+
+  .hero .summary {
+    font-size: 1.05rem;
+    max-width: 60ch;
+  }
+}
+
 @keyframes hero-mask-slide {
   0% { background-position: 0 50%; }
   100% { background-position: 100% 50%; }
@@ -191,6 +216,9 @@ html.theme-transition, body.theme-transition, .site-header.theme-transition, .na
 .brand-text {
   /* Remove outline-like effect */
   text-shadow: none;
+  font-family: "Oxanium", "Space Grotesk", ui-sans-serif;
+  font-weight: 700;
+  letter-spacing: .6px;
 }
 
 /* Single combined glow behind logo + text */

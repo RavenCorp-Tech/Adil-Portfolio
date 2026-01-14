@@ -33,8 +33,12 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Oxanium:wght@500;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 
+    <!-- Swiper (Projects coverflow) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
     <link rel="stylesheet" href="styles.css" />
 <link rel="stylesheet" href="styles-override.css" />
+    <script defer src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
     <script defer src="animations.js"></script>
     <script defer src="script.js"></script>
@@ -146,7 +150,10 @@
       <section id="projects" class="container section reveal">
         <h2>Projects</h2>
         <p class="section-intro">A selection of things I’m building.</p>
-        <div id="projects-grid" class="projects-grid" aria-live="polite"></div>
+        <div class="swiper projects-slider" aria-live="polite">
+          <div class="swiper-wrapper" id="projects-wrapper"></div>
+          <div class="swiper-pagination"></div>
+        </div>
       </section>
 
       <section id="about" class="container section reveal">

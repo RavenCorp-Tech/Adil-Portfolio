@@ -157,8 +157,8 @@ document.getElementById("year").textContent = String(new Date().getFullYear());
 
 // Projects
 async function loadProjects() {
-  const grid = document.getElementById("projects-grid");
-  if (!grid) return;
+  const wrapper = document.getElementById("projects-wrapper");
+  if (!wrapper) return;
   try {
     const res = await fetch("data/projects.json", { cache: "no-store" });
     if (!res.ok) throw new Error("Failed to fetch projects.json");
@@ -166,6 +166,9 @@ async function loadProjects() {
     if (!Array.isArray(projects)) throw new Error("Invalid projects format");
     const frag = document.createDocumentFragment();
     for (const p of projects) {
+      const slide = document.createElement("div");
+      slide.className = "swiper-slide";
+
       const card = document.createElement("article");
       card.className = "project-card reveal visible";
       const comingSoon = p.comingSoon ? `<span class="tag">Coming soon</span>` : "";
@@ -183,12 +186,45 @@ async function loadProjects() {
           ${p.links?.source ? `<a href="${p.links.source}" target="_blank" rel="noopener">Source</a>` : ""}
         </div>
       `;
-      frag.appendChild(card);
+
+      slide.appendChild(card);
+      frag.appendChild(slide);
     }
-    grid.replaceChildren(frag);
+    wrapper.replaceChildren(frag);
+
+    // Initialize Swiper after slides are in the DOM
+    const sliderEl = document.querySelector('.projects-slider');
+    if (sliderEl && typeof Swiper !== 'undefined') {
+      if (window.__projectsSwiper && typeof window.__projectsSwiper.destroy === 'function') {
+        window.__projectsSwiper.destroy(true, true);
+      }
+      window.__projectsSwiper = new Swiper('.projects-slider', {
+        effect: 'coverflow',
+        grabCursor: true,
+        centeredSlides: true,
+        slidesPerView: 'auto',
+        loop: true,
+        speed: 600,
+        autoplay: {
+          delay: 3000,
+          disableOnInteraction: false,
+        },
+        coverflowEffect: {
+          rotate: 0,
+          stretch: 0,
+          depth: 100,
+          modifier: 2.5,
+          slideShadows: false,
+        },
+        pagination: { el: '.swiper-pagination', clickable: true }
+      });
+    }
   } catch (err) {
     console.error(err);
-    grid.innerHTML = `<p class="small">Unable to load projects. Update data/projects.json or check console.</p>`;
+    const gridFallback = document.querySelector('.projects-slider');
+    if (gridFallback) {
+      gridFallback.innerHTML = `<p class="small">Unable to load projects. Update data/projects.json or check console.</p>`;
+    }
   }
 }
 loadProjects();

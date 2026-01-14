@@ -198,10 +198,25 @@ h3 { font-size: clamp(1.05rem, 3.5vw, 1.3rem); }
 .btn:hover { transform: translateY(-1px); text-decoration: none; box-shadow: var(--glow); }
 .btn.primary { background: linear-gradient(135deg, color-mix(in oklab, var(--primary) 85%, #ffffff 15%), color-mix(in oklab, var(--accent) 60%, #000 40%)); color: var(--primary-contrast); border-color: color-mix(in oklab, var(--primary) 60%, black 40%); }
 
-/* Projects */
-.projects-grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 1rem; }
+/* Projects (Swiper coverflow carousel) */
+.swiper {
+  width: 100%;
+  padding: 50px 0;
+}
+
+.swiper-slide {
+  width: clamp(320px, 80vw, 400px);
+  height: auto;
+  transition: filter 0.3s ease, transform 0.3s ease;
+  filter: blur(6px) opacity(0.6);
+}
+
+.swiper-slide-active {
+  filter: blur(0) opacity(1);
+  z-index: 10;
+}
+
 .project-card {
-  grid-column: span 6;
   background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden;
   display: flex; flex-direction: column; min-height: 100%;
   transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
@@ -259,7 +274,6 @@ h3 { font-size: clamp(1.05rem, 3.5vw, 1.3rem); }
 @media (max-width: 900px) {
   .hero { grid-template-columns: 1fr; text-align: center; }
   .hero .cta, .hero .socials { justify-content: center; }
-  .projects-grid .project-card { grid-column: span 12; }
   .about-grid { grid-template-columns: 1fr; }
 }
 @media (max-width: 760px) {

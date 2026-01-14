@@ -36,6 +36,9 @@
     <!-- Swiper (Projects coverflow) -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 
+    <!-- Devicon (Skills icons) -->
+    <link rel="stylesheet" type='text/css' href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" />
+
     <link rel="stylesheet" href="styles.css" />
 <link rel="stylesheet" href="styles-override.css" />
     <script defer src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
@@ -201,16 +204,45 @@
 
       <section id="skills" class="container section reveal">
         <h2>Skills</h2>
-        <ul class="chips">
-          <li>HTML</li>
-          <li>CSS</li>
-          <li>JavaScript</li>
-          <li>Python</li>
-          <li>Node.js</li>
-          <li>AI APIs</li>
-          <li>Web Automation</li>
-          <li>Exploring AI/ML</li>
-        </ul>
+        <div class="skills-marquee" aria-label="Skills marquee">
+          <div class="marquee-track">
+            <div class="marquee-set">
+              <i class="devicon-html5-plain" aria-label="HTML5"></i>
+              <i class="devicon-css3-plain" aria-label="CSS3"></i>
+              <i class="devicon-javascript-plain" aria-label="JavaScript"></i>
+              <i class="devicon-python-plain" aria-label="Python"></i>
+              <i class="devicon-nodejs-plain" aria-label="Node.js"></i>
+              <i class="devicon-react-original" aria-label="React"></i>
+              <i class="devicon-nextjs-plain" aria-label="Next.js"></i>
+              <i class="devicon-tailwindcss-original" aria-label="Tailwind CSS"></i>
+              <i class="devicon-mysql-plain" aria-label="MySQL"></i>
+              <i class="devicon-mongodb-plain" aria-label="MongoDB"></i>
+              <i class="devicon-azure-plain" aria-label="Azure"></i>
+
+              <span class="skill-badge">AI APIs</span>
+              <span class="skill-badge">Web Automation</span>
+              <span class="skill-badge">Exploring AI/ML</span>
+            </div>
+
+            <div class="marquee-set" aria-hidden="true">
+              <i class="devicon-html5-plain"></i>
+              <i class="devicon-css3-plain"></i>
+              <i class="devicon-javascript-plain"></i>
+              <i class="devicon-python-plain"></i>
+              <i class="devicon-nodejs-plain"></i>
+              <i class="devicon-react-original"></i>
+              <i class="devicon-nextjs-plain"></i>
+              <i class="devicon-tailwindcss-original"></i>
+              <i class="devicon-mysql-plain"></i>
+              <i class="devicon-mongodb-plain"></i>
+              <i class="devicon-azure-plain"></i>
+
+              <span class="skill-badge">AI APIs</span>
+              <span class="skill-badge">Web Automation</span>
+              <span class="skill-badge">Exploring AI/ML</span>
+            </div>
+          </div>
+        </div>
       </section>
 
       <section id="experience" class="container section reveal">

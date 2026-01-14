@@ -246,6 +246,72 @@ h3 { font-size: clamp(1.05rem, 3.5vw, 1.3rem); }
 .chips { list-style: none; display: flex; flex-wrap: wrap; gap: .5rem; padding: 0; }
 .chips li { border: 1px solid var(--border); padding: .45rem .75rem; border-radius: 999px; background: var(--surface-2); color: var(--text); }
 
+.skills-marquee {
+  position: relative;
+  overflow: hidden;
+  padding: 1rem 0;
+  /* Fade edges */
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+  mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+}
+
+.marquee-track {
+  display: flex;
+  gap: 3rem;
+  width: max-content;
+  align-items: center;
+  animation: scroll 40s linear infinite;
+}
+
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+
+.marquee-set {
+  display: flex;
+  gap: 3rem;
+  align-items: center;
+  white-space: nowrap;
+}
+
+@keyframes scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+.skills-marquee i {
+  font-size: 3.5rem;
+  line-height: 1;
+  color: var(--text);
+  filter: grayscale(100%) opacity(0.7);
+  transition: filter 0.3s ease, transform 0.3s ease;
+}
+
+.skills-marquee i:hover {
+  filter: none;
+  transform: translateY(-2px);
+}
+
+.skill-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: .55rem 1rem;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: color-mix(in oklab, var(--surface-2) 82%, transparent);
+  color: var(--text);
+  box-shadow: var(--shadow);
+  backdrop-filter: saturate(1.2) blur(8px);
+  -webkit-backdrop-filter: saturate(1.2) blur(8px);
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+
+.skill-badge:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow), var(--glow);
+}
+
 /* Experience */
 .timeline { list-style: none; padding: 0; margin: 0; display: grid; gap: 1rem; }
 .timeline-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 1rem; }

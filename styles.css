@@ -337,6 +337,43 @@ h3 { font-size: clamp(1.05rem, 3.5vw, 1.3rem); }
   box-shadow: var(--shadow), var(--glow);
 }
 
+/* Badges */
+.badge-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1rem;
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: .5rem;
+  transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+}
+
+.badge-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow), var(--glow);
+  border-color: color-mix(in oklab, var(--accent) 60%, var(--border));
+}
+
+.badge-card img {
+  width: min(140px, 50vw);
+  height: auto;
+  object-fit: contain;
+}
+
+.badge-card h3 {
+  margin: .25rem 0 0;
+}
+
+.badge-issuer {
+  margin: 0;
+  color: var(--muted);
+  font-size: .9rem;
+}
+
 /* Experience */
 .timeline { list-style: none; padding: 0; margin: 0; display: grid; gap: 1rem; }
 .timeline-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 1rem; }

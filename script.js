@@ -229,6 +229,37 @@ async function loadProjects() {
 }
 loadProjects();
 
+// Badges (Swiper coverflow)
+(function initBadgesSwiper() {
+  const el = document.querySelector('.badges-slider');
+  if (!el || typeof Swiper === 'undefined') return;
+
+  if (window.__badgesSwiper && typeof window.__badgesSwiper.destroy === 'function') {
+    window.__badgesSwiper.destroy(true, true);
+  }
+
+  window.__badgesSwiper = new Swiper('.badges-slider', {
+    effect: 'coverflow',
+    grabCursor: true,
+    centeredSlides: true,
+    slidesPerView: 'auto',
+    loop: true,
+    speed: 600,
+    autoplay: {
+      delay: 3000,
+      disableOnInteraction: false,
+    },
+    coverflowEffect: {
+      rotate: 0,
+      stretch: 0,
+      depth: 100,
+      modifier: 2.5,
+      slideShadows: false,
+    },
+    pagination: { el: '.badges-pagination', clickable: true }
+  });
+})();
+
 // Show resume button if resume.pdf exists (works on GitHub Pages / HTTP)
 (async function showResumeIfExists() {
   const btn = document.getElementById("resume-btn");

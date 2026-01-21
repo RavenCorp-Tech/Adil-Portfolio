@@ -533,11 +533,41 @@ loadProjects();
     addMessage('Raven is typing…', 'raven', { id: 'typing-indicator' });
     try {
       const endpoint = (API_BASE ? `${API_BASE}/api/chat` : '/api/chat');
-      const res = await fetch(endpoint, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ question: q })
-      });
+      const streamEndpoint = (API_BASE ? `${API_BASE}/api/chat/stream` : '/api/chat/stream');
+
+const res = await fetch(streamEndpoint, {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({ question: q })
+});
+
+if (!res.ok || !res.body) {
+  throw new Error('Streaming failed');
+}
+
+removeTyping();
+let assistantText = '';
+addMessage('', 'raven', { id: 'streaming-reply' });
+
+const reader = res.body.getReader();
+const decoder = new TextDecoder();
+
+while (true) {
+  const { value, done } = await reader.read();
+  if (done) break;
+
+  const chunk = decoder.decode(value);
+  const lines = chunk.split('\n');
+
+  for (const line of lines) {
+    if (line.startsWith('data: ')) {
+      const token = line.replace('data: ', '');
+      assistantText += token;
+      document.querySelector('#streaming-reply p').textContent = assistantText;
+    }
+  }
+}
+
       if (!res.ok) throw new Error('Network error: ' + res.status);
       const data = await res.json();
       removeTyping();

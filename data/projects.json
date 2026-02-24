@@ -55,6 +55,15 @@
     }
   },
   {
+    "title": "Jeejen - Fatima Khan Poetries",
+    "description": "An elegant poetry showcase for Fatima Khan featuring a curated collection of original poems on longing, faith, resilience, and womanhood, presented with immersive visuals and a reader-first experience.",
+    "image": "assets/projects/Jeejen.png",
+    "tags": ["HTML", "CSS", "JavaScript"],
+    "links": {
+      "live": "https://jeejen.me/"
+    }
+  },
+  {
     "title": "Portfolio Website",
     "description": "This site — a responsive, SEO‑friendly personal portfolio featuring a built‑in AI Assistant chatbot powered by Google Gemini.",
     "image": "assets/logo-ravencorp-tech.png",

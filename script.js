@@ -164,8 +164,11 @@ async function loadProjects() {
     if (!res.ok) throw new Error("Failed to fetch projects.json");
     const projects = await res.json();
     if (!Array.isArray(projects)) throw new Error("Invalid projects format");
+    const sortedProjects = [...projects].sort((a, b) =>
+      String(a?.title ?? "").localeCompare(String(b?.title ?? ""), undefined, { sensitivity: "base" })
+    );
     const frag = document.createDocumentFragment();
-    for (const p of projects) {
+    for (const p of sortedProjects) {
       const slide = document.createElement("div");
       slide.className = "swiper-slide";
 

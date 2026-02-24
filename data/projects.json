@@ -55,6 +55,15 @@
     }
   },
   {
+    "title": "ORYX Cafe",
+    "description": "A clean café website for ORYX Cafe featuring menu-first presentation, brand storytelling, and a polished customer-facing experience.",
+    "image": "assets/projects/Oryx.png",
+    "tags": ["HTML", "CSS", "JavaScript"],
+    "links": {
+      "live": "https://ravencorp-tech.github.io/Oryx-Cafe/"
+    }
+  },
+  {
     "title": "Jeejen - Fatima Khan Poetries",
     "description": "An elegant poetry showcase for Fatima Khan featuring a curated collection of original poems on longing, faith, resilience, and womanhood, presented with immersive visuals and a reader-first experience.",
     "image": "assets/projects/Jeejen.png",

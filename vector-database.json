@@ -1549,7 +1549,7 @@
   },
   {
     "id": "chunk-3",
-    "text": "Current Focus: Arabic Romanizer (AI transliteration tool using ChatGPT 5 API, coming soon). VeoCreator (AI video generation tool using Google Gemini’s Veo 3, coming soon). Experimenting with AI APIs and web automation workflows. Open to collaborations and freelance opportunities.",
+    "text": "Current Focus: Arabic Romanizer (live AI transliteration tool powered by Gemini 2.5 Flash with scholarly diacritical handling and context-aware rules). VeoCreator (AI video generation tool using Google Gemini’s Veo 3, coming soon). Experimenting with AI APIs and web automation workflows. Open to collaborations and freelance opportunities.",
     "embedding": [
       -0.020705337,
       0.0052832128,
@@ -4645,7 +4645,7 @@
   },
   {
     "id": "chunk-7",
-    "text": "Experience: Independent Developer — Raven Corp.Tech. 2024 — Present • Remote. Building “Arabic Romanizer” (AI tool for Arabic → Roman transliteration using ChatGPT 5 API). Developing “VeoCreator” (AI video generator using Google Gemini’s Veo 3). Prototyping automation scripts and AI utilities using JavaScript, Python, and Node.js.",
+    "text": "Experience: Independent Developer — Raven Corp.Tech. 2024 — Present • Remote. Built and launched “Arabic Romanizer” (AI tool for Arabic → Roman transliteration powered by Gemini 2.5 Flash with scholarly rules and diacritical precision). Developing “VeoCreator” (AI video generator using Google Gemini’s Veo 3). Prototyping automation scripts and AI utilities using JavaScript, Python, and Node.js.",
     "embedding": [
       -0.009488553,
       -0.003419473,
@@ -5419,7 +5419,7 @@
   },
   {
     "id": "chunk-8",
-    "text": "Project - Arabic Romanizer: (Coming soon). AI‑powered Arabic → Roman transliteration tool. Tags: JavaScript, AI, Web App.",
+    "text": "Project - Arabic Romanizer: Live at https://ravencorp-tech.github.io/Arabic-Romanizer/. AI‑powered Arabic → Roman transliteration with sun/moon letter handling, shadda-aware output, and scholarly diacritical precision. Tags: JavaScript, AI, Web App.",
     "embedding": [
       0.0052714325,
       0.011423219,

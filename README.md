@@ -41,7 +41,7 @@ The form is present but disabled until you add a provider endpoint:
 
 ## Project note
 
-- \"Arabic Romanizer\" is AI‑powered and will use ChatGPT 5 API for improved transliteration accuracy.
+- \"Arabic Romanizer\" is live: https://ravencorp-tech.github.io/Arabic-Romanizer/ — an AI-powered Arabic transliteration app using Gemini 2.5 Flash with scholarly diacritical handling and context-aware rules.
 
 ## License
 

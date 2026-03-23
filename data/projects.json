@@ -1,12 +1,11 @@
 [
   {
     "title": "Arabic Romanizer",
-    "description": "AI‑powered Arabic → Roman transliteration tool.",
-    "image": "assets/projects/Arabic.jpg",
+    "description": "A scholarly Arabic-to-Roman transliteration web app with sun/moon letter handling, diacritical precision, and context-aware rules, powered by Gemini 2.5 Flash with support for providers like GPT, Claude, Kimi, and DeepSeek.",
+    "image": "assets/projects/ArabicRomanizer.png",
     "tags": ["JavaScript", "AI", "Web App"],
-    "comingSoon": true,
     "links": {
-      "live": ""
+      "live": "https://ravencorp-tech.github.io/Arabic-Romanizer/"
     }
   },
   {
@@ -52,6 +51,24 @@
     "tags": ["HTML", "CSS", "JavaScript"],
     "links": {
       "live": "https://ravencorp-tech.github.io/Oro-Coffee/"
+    }
+  },
+  {
+    "title": "Petals & Poetry — Cakery and Cafe",
+    "description": "A rich, menu-forward website for Petals & Poetry, a Detroit grab-and-go cakery and cafe showcasing handcrafted cupcakes, specialty cakes, artisan drinks, gallery highlights, and online ordering in one polished experience.",
+    "image": "assets/projects/Petals&Poetry.png",
+    "tags": ["HTML", "CSS", "JavaScript", "Food & Beverage"],
+    "links": {
+      "live": "https://ravencorp-tech.github.io/Petals-n-Poetry-CC/"
+    }
+  },
+  {
+    "title": "Shaykh Abū ʿAlī al-Ḥārith al-Ḥasanī",
+    "description": "A scholarly Islamic resource platform presenting the works of Shaykh al-Ḥasanī, featuring articles, books, Fatāwā Ḥadīthiyyah, hadith collections, media resources, and a narrator encyclopedia with an accessibility-focused bilingual presentation.",
+    "image": "assets/projects/AlHasani.png",
+    "tags": ["HTML", "CSS", "JavaScript", "Islamic Studies"],
+    "links": {
+      "live": "https://ravencorp-tech.github.io/Shaykh-Al-Hasani/app/index.html"
     }
   },
   {
